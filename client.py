@@ -3,15 +3,15 @@ from tkinter import font
 
 def update_display():
     global display_players, players, players_var
-    with open("leaderboard.txt", "w") as f:
-        f.write(str(players))
+    #with open("leaderboard.txt", "w") as f:
+    #    f.write(str(players))
     display_players.clear()
     temp = sorted(players,key=lambda x: (x[1]))
     temp.reverse()
     print("temp:", temp)
     for ind, player in enumerate(temp):
         print(100-len(player[0]))
-        temp_str = str(ind+1) + "." + " "*(8-len(str(ind+1))) + player[0] + " "*(50-(len(player[0])*1)) + player[1]
+        temp_str = str(ind+1) + "." + " "*(8-len(str(ind+1))) + player[0] + " "*(69-(len(player[0])*1)) + player[1]
         display_players.append(temp_str)
     players_var.set(display_players)
     print(display_players)
@@ -53,11 +53,11 @@ tkinter.Label(root, text="Robotics Challenge Leaderboard", font=("Courier", 30),
 board = tkinter.Listbox(root, listvariable=players_var, borderwidth=0, highlightthickness=0, font=("Courier", 22), width=root.winfo_screenwidth()-30, height=100)
 board.pack(padx=15, pady=15)
 
-try:
-    with open("leaderboard.txt", "r") as f:
-        exec(f"players = {f.readline().strip()}")
-        update_display()
-except FileNotFoundError:
-    pass
+#try:
+#    with open("leaderboard.txt", "r") as f:
+#        exec(f"players = {f.readline().strip()}")
+#        update_display()
+#except:
+#    pass
 
 root.mainloop()
