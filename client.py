@@ -1,7 +1,10 @@
 import socket, sys, threading, tkinter
 from tkinter import font
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server.connect((sys.argv[1], int(sys.argv[2]))) # IP, PORT
+try:
+    server.connect((sys.argv[1], int(sys.argv[2]))) # IP, PORT
+except:
+    server.connect((input("Enter IP: "), int(input("Enter Port: "))))
 players = []
 display_players = [["bob", 1]]
 
@@ -19,6 +22,8 @@ def handle():
 
 def update_display():
     global display_players, players, players_var
+    with open("leaderboard.txt", "w") as f:
+        f.write(players)
     display_players.clear()
     temp = sorted(players,key=lambda x: (x[1]))
     temp.reverse()
