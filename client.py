@@ -23,7 +23,7 @@ def handle():
 def update_display():
     global display_players, players, players_var
     with open("leaderboard.txt", "w") as f:
-        f.write(players)
+        f.write(str(players))
     display_players.clear()
     temp = sorted(players,key=lambda x: (x[1]))
     temp.reverse()
