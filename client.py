@@ -7,7 +7,11 @@ except:
     server.connect((input("Enter IP: "), int(input("Enter Port: "))))
 players = []
 display_players = [["bob", 1]]
-
+try:
+    with open("leaderboard.txt", "r") as f:
+        players = f.readline().strip()
+except FileNotFoundError:
+    pass
 
 def handle():
     global server, players, players_var
